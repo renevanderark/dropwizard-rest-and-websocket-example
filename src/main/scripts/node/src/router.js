@@ -7,11 +7,6 @@ import actions from "./actions";
 
 import SampleApp from "./components/sample-app";
 
-
-
-const defaultConnector = (state) => state;
-const connectComponent = (stateToProps) => connect(stateToProps, dispatch => actions(navigateTo, dispatch));
-
 const urls = {
   root() {
     return "/";
@@ -20,6 +15,8 @@ const urls = {
 
 const navigateTo = (key, args) => browserHistory.push(urls[key].apply(null, args));
 
+const defaultConnector = (state) => state;
+const connectComponent = (stateToProps) => connect(stateToProps, dispatch => actions(navigateTo, dispatch));
 
 export default (
   <Provider store={store}>
