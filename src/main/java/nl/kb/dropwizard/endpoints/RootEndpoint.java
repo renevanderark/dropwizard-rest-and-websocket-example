@@ -42,7 +42,7 @@ public class RootEndpoint {
 
   @GET
   public Response getHtml() {
-    return Response.ok(HTML_TEMPLATE).build();
+    return Response.ok(parseHtmlTemplate()).build();
   }
 
   @GET
