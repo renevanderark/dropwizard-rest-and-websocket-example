@@ -1,16 +1,18 @@
 server:
   applicationConnectors:
-    - type: http #Note! if you change this you might or might not also want to change the baseUri
-      port: 8080 #Note! if you change this you might or might not also want to change the baseUri
-      bindHost: 127.0.0.1 #Note! if you change this you might or might not also want to change the baseUri
+    - type: http
+      port: 8080
+      bindHost: 127.0.0.1
   adminConnectors:
     - type: http
       port: 8081
   requestLog:
-    appenders: [] #All requests are already logged using logging.LoggingFilter so the seperate requestlog is not needed
+    appenders: []
 
 logging:
   appenders:
     - type: console
       logFormat: "- %-5p  %m [%c{60}]%n"
   level: INFO
+
+appTitle: "Dropwizard sample"
