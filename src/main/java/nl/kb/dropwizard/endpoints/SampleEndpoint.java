@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static nl.kb.dropwizard.util.JsonBuilder.jsn;
 import static nl.kb.dropwizard.util.JsonBuilder.jsnO;
@@ -20,7 +21,8 @@ public class SampleEndpoint {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response index() {
-    return Response.ok(jsnO("sample", jsn(true))).build();
+
+    return Response.ok(jsnO("sample", jsn(new Date().toString()))).build();
   }
 
   @POST
@@ -37,8 +39,8 @@ public class SampleEndpoint {
     new Thread(() -> {
       for (int i = 0; i < 100; i++) {
         try {
-          output.write(jsnO("progress", jsn(i + 1)).toString() + "\n");
-          Thread.sleep(100L);
+          output.write("\n" + jsnO("progress", jsn(i + 1)).toString());
+          Thread.sleep(20L);
         } catch (IOException | InterruptedException ignored) {
         }
       }

@@ -1,0 +1,29 @@
+{
+  "name": "dropwizard-sample-frontend",
+  "version": "1.0.0-SNAPSHOT",
+  "author": {
+    "name": "René van der Ark",
+    "email": "r.van.der.ark@gmail.com"
+  },
+  "scripts": {
+    "devrun": "BUILD_TARGET=../../../../target/classes/assets/javascripts NODE_ENV=development node_modules/.bin/webpack --colors --watch",
+    "build": "NODE_ENV=production node_modules/.bin/webpack --optimize-minimize"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "xhr": "^2.3.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "webpack": "^1.14.0"
+  }
+}
