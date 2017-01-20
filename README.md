@@ -1,6 +1,6 @@
 # Dropwizard scaffold app
 
-This is a sample application illustrating the use of [Dropwizard](http://www.dropwizard.io) with some samples.
+This is a sample application illustrating the use of [Dropwizard](http://www.dropwizard.io) with some samples for REST and websockets.
 
 See the [live demo](https://desolate-hamlet-17428.herokuapp.com/) on heroku.
 
