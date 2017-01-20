@@ -6,6 +6,9 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.kb.dropwizard.endpoints.RootEndpoint;
 import nl.kb.dropwizard.endpoints.SampleEndpoint;
+import nl.kb.dropwizard.endpoints.SampleWebSocketServlet;
+
+import javax.servlet.Servlet;
 
 public class App extends Application<Config> {
 
@@ -24,7 +27,11 @@ public class App extends Application<Config> {
 
     register(environment, new SampleEndpoint());
     register(environment, new RootEndpoint(config.getAppTitle()));
+    registerServlet(environment, new SampleWebSocketServlet());
+  }
 
+  private void registerServlet(Environment environment, Servlet servlet) {
+    environment.servlets().addServlet("sampleWebsocket", servlet).addMapping("/socket-sample");
   }
 
   private void register(Environment environment, Object component) {
