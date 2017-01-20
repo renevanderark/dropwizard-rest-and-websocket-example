@@ -4,7 +4,8 @@ const initialState = {
   sampleResponse: null,
   progressSample: null,
   progressSampleDisabled: false,
-  chatMessages: []
+  chatMessages: [],
+  connections: 0
 };
 
 export default function(state=initialState, action) {
@@ -32,7 +33,8 @@ export default function(state=initialState, action) {
     case ActionTypes.ON_CHAT_MSG:
       return {
         ...state,
-        chatMessages: state.chatMessages.concat(action.data)
+        chatMessages: state.chatMessages.concat(action.data.source + ": " + action.data.msg),
+        connections: action.data.count
       };
     default:
   }

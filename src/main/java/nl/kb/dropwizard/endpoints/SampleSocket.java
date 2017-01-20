@@ -10,6 +10,9 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import java.io.IOException;
 import java.util.Set;
 
+import static nl.kb.dropwizard.util.JsonBuilder.jsn;
+import static nl.kb.dropwizard.util.JsonBuilder.jsnO;
+
 @WebSocket
 public class SampleSocket  {
 
@@ -23,22 +26,34 @@ public class SampleSocket  {
 
   @OnWebSocketMessage
   public void onText(String msg) {
+    broadcast(msg);
+  }
+
+  private void broadcast(String msg) {
     Registrations.getInstance().get().forEach(registration -> {
       try {
         if (registration.equals(this)) {
-          registration.session.getRemote().sendString("you: " + msg);
+          registration.session.getRemote().sendString(getPayload(msg, "you"));
         } else {
-          registration.session.getRemote().sendString("someone else: " + msg);
+          registration.session.getRemote().sendString(getPayload(msg, "someone else"));
         }
       } catch (IOException ignored) {
       }
     });
   }
 
+  private String getPayload(String msg, String source) {
+    return jsnO(
+      "msg", jsn(msg),
+      "source", jsn(source),
+      "count", jsn(Registrations.getInstance().get().size())
+    ).toString();
+  }
+
   @OnWebSocketClose
   public void onClose(int statusCode, String reason) {
-    System.out.println("Socket closing");
     Registrations.getInstance().remove(this);
+    broadcast("logged off");
   }
 
   private static class Registrations {

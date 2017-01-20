@@ -23,7 +23,11 @@ class SampleApp extends React.Component {
   }
 
   render() {
-    const { sample: { sampleResponse, progressSample, progressSampleDisabled, chatMessages  }, onSampleClick, onPostSampleClick} = this.props;
+    const {
+      sample: { sampleResponse, progressSample, progressSampleDisabled, chatMessages, connections },
+      onSampleClick,
+      onPostSampleClick
+    } = this.props;
 
     return (
       <div>
@@ -70,7 +74,7 @@ class SampleApp extends React.Component {
 
           <div className="panel panel-default">
             <div className="panel-heading">
-              Chat via socket
+              Chat via socket (connections: {connections})
             </div>
             <div className="panel-body">
               <p>This chat uses websockets over /socket-sample</p>
