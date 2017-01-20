@@ -1,4 +1,4 @@
-# Dropwizard scaffold app
+# Dropwizard example app
 
 This is a sample application illustrating the use of [Dropwizard](http://www.dropwizard.io) with some samples for REST and websockets.
 
