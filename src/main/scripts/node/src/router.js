@@ -12,8 +12,14 @@ const webSocket = new WebSocket(`${globals.env.wsProtocol}://${globals.env.hostn
 
 webSocket.onmessage = ({ data }) => store.dispatch({type: ActionTypes.ON_CHAT_MSG, data: JSON.parse(data)});
 
-webSocket.onopen = () => webSocket.send("connected!");
 webSocket.onclose = (...args) => console.log("Closing websocket", args);
+
+const pingWs = () => {
+  webSocket.send("* ping! *");
+  window.setTimeout(pingWs, 8000);
+};
+
+webSocket.onopen = pingWs;
 
 const urls = {
   root() {

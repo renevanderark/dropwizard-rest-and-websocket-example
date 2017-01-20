@@ -31,6 +31,9 @@ export default function(state=initialState, action) {
         progressSampleDisabled: false
       };
     case ActionTypes.ON_CHAT_MSG:
+      if (action.data.msg === "* ping! *") {
+        return {...state, connections: action.data.count };
+      }
       return {
         ...state,
         chatMessages: state.chatMessages.concat(action.data.source + ": " + action.data.msg),
