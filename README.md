@@ -10,7 +10,7 @@ This app depends on the following tools being present:
 
 - Java 8 SDK or greater
 - Maven 3
-- npm > 5 (see [nvm project page](https://github.com/creationix/nvm) for further details)
+- npm > 5 (see [nvm project page](https://github.com/creationix/nvm) for further details on running a current version of npm)
 
 ## Quick start
 
@@ -33,7 +33,7 @@ It has a RootEndpoint for static assets and a SampleEndpoint for Rest / Websocke
 
 The frontend is a single page javascript app through an html template, exposing some environment settings to the javascripts through a globals var```console.log(globals.env)```.
 
-The frontend is built with a react architecture.  
+The frontend is built with [React](https://facebook.github.io/react/).  
 
 Small npm + webpack project to build static assets: ```src/main/scripts/node```
 
