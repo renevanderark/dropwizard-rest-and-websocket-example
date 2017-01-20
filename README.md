@@ -1,6 +1,6 @@
 # Dropwizard scaffold app
 
-This is a sample application illustrating the use of dropwizard with some samples.
+This is a sample application illustrating the use of [Dropwizard](http://www.dropwizard.io) with some samples.
 
 See the [live demo](https://desolate-hamlet-17428.herokuapp.com/) on heroku.
 
@@ -20,17 +20,33 @@ This command will build with maven (and npm) and start your app.
   ./start.sh
 ```
 
-Visit: http://localhost:8182
+Visit: [http://localhost:8182](http://localhost:8182)
 
 ## Features
 
+### Backend
+
 Barebone server side dropwizard instance: ```src/main/java```
+It has a RootEndpoint for static assets and a SampleEndpoint for Rest / Websocket examples.
+
+### Frontend
+
+The frontend is a single page javascript app through an html template, exposing some environment settings to the javascripts through a globals var```console.log(globals.env)```.
+
+The frontend is built with a react architecture.  
 
 Small npm + webpack project to build static assets: ```src/main/scripts/node```
 
+Static resources (css / javascript / fonts) are hosted from ```src/main/resources/assets``` via ```/assets/*```
+
+You can of course always write vanilla javascript in ```src/main/resources/assets/javascripts```
+
+
+## Development modes
+
 No hot deploy, to rebuild stop and rerun: ```./start.sh```
 
-However, you can App.main from Intellij with these command line args: ```server config.yaml``` to enable the task below for hot deploy of static javascripts:
+However, you can run App.main from Intellij with these command line args: ```server config.yaml``` to enable the task below for hot deploy of javascripts:
 ```bash
    cd src/main/scripts/node
    npm run devrun # run webpack in watch mode
