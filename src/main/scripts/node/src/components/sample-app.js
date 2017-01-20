@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+import ChatMessages from "./chat-messages";
+
 class SampleApp extends React.Component {
 
   constructor(props) {
@@ -21,7 +23,7 @@ class SampleApp extends React.Component {
   }
 
   render() {
-    const { sample: { sampleResponse, progressSample, progressSampleDisabled  }, onSampleClick, onPostSampleClick} = this.props;
+    const { sample: { sampleResponse, progressSample, progressSampleDisabled, chatMessages  }, onSampleClick, onPostSampleClick} = this.props;
 
     return (
       <div>
@@ -77,6 +79,7 @@ class SampleApp extends React.Component {
                        onChange={this.onMsgChange.bind(this)} onKeyPress={this.onMsgKeypress.bind(this)}/>
               </p>
 
+              <ChatMessages chatMessages={chatMessages} />
             </div>
           </div>
         </div>

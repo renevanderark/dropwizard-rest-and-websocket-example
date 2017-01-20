@@ -25,7 +25,11 @@ public class SampleSocket  {
   public void onText(String msg) {
     Registrations.getInstance().get().forEach(registration -> {
       try {
-        registration.session.getRemote().sendString(msg);
+        if (registration.equals(this)) {
+          registration.session.getRemote().sendString("you: " + msg);
+        } else {
+          registration.session.getRemote().sendString("someone else: " + msg);
+        }
       } catch (IOException ignored) {
       }
     });
@@ -33,6 +37,7 @@ public class SampleSocket  {
 
   @OnWebSocketClose
   public void onClose(int statusCode, String reason) {
+    System.out.println("Socket closing");
     Registrations.getInstance().remove(this);
   }
 

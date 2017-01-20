@@ -13,7 +13,7 @@ const webSocket = new WebSocket("ws://localhost:8182/socket-sample");
 webSocket.onmessage = ({ data }) => store.dispatch({type: ActionTypes.ON_CHAT_MSG, data: data});
 
 webSocket.onopen = () => webSocket.send("connected!");
-
+webSocket.onclose = (...args) => console.log("Closing websocket", args);
 
 const urls = {
   root() {
