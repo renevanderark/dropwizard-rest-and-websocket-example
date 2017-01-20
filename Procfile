@@ -1,1 +1,1 @@
-web: ./target/appassembler/bin/run server config.yaml
+web: ./target/appassembler/bin/run server heroku.yaml

@@ -2,6 +2,8 @@ package nl.kb.dropwizard;
 
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.kb.dropwizard.endpoints.RootEndpoint;
@@ -19,6 +21,11 @@ public class App extends Application<Config> {
   @Override
   public void initialize(Bootstrap<Config> bootstrap) {
     bootstrap.addBundle(new AssetsBundle("/assets", "/assets"));
+
+    bootstrap.setConfigurationSourceProvider(
+      new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+        new EnvironmentVariableSubstitutor(false))
+    );
   }
 
   @Override
@@ -26,7 +33,7 @@ public class App extends Application<Config> {
 
 
     register(environment, new SampleEndpoint());
-    register(environment, new RootEndpoint(config.getAppTitle()));
+    register(environment, new RootEndpoint(config.getAppTitle(), config.getHostName()));
     registerServlet(environment, new SampleWebSocketServlet());
   }
 

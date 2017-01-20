@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
+import static nl.kb.dropwizard.util.JsonBuilder.jsn;
 import static nl.kb.dropwizard.util.JsonBuilder.jsnA;
 import static nl.kb.dropwizard.util.JsonBuilder.jsnO;
 
@@ -35,9 +36,12 @@ public class RootEndpoint {
   }
 
   private final String appTitle;
+  private final String hostName;
 
-  public RootEndpoint(String appTitle) {
+  public RootEndpoint(String appTitle, String hostName) {
+
     this.appTitle = appTitle;
+    this.hostName = hostName;
   }
 
   @GET
@@ -73,7 +77,10 @@ public class RootEndpoint {
 
   private String parseHtmlTemplate(String... pathParams) {
     final String jsEnv =
-      jsnO("env", jsnO("pathParams", jsnA(Lists.newArrayList(pathParams).stream().map(JsonBuilder::jsn)))).toString();
+      jsnO("env", jsnO(
+        "pathParams", jsnA(Lists.newArrayList(pathParams).stream().map(JsonBuilder::jsn)),
+        "hostname", jsn(hostName)
+      )).toString();
 
     return HTML_TEMPLATE
       .replace("<%= APP_TITLE %>", appTitle)
