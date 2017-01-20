@@ -9,6 +9,8 @@ class Config extends Configuration {
   private String appTitle = "";
   @JsonProperty
   private String hostName = "";
+  @JsonProperty
+  private String wsProtocol = "ws";
 
 
   String getAppTitle() {
@@ -17,5 +19,9 @@ class Config extends Configuration {
 
   String getHostName() {
     return hostName;
+  }
+
+  String getWsProtocol() {
+    return wsProtocol;
   }
 }

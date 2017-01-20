@@ -17,3 +17,4 @@ logging:
 
 appTitle: "Dropwizard sample"
 hostName: desolate-hamlet-17428.herokuapp.com
+wsProtocol: wss

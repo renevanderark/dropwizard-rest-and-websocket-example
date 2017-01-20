@@ -37,11 +37,13 @@ public class RootEndpoint {
 
   private final String appTitle;
   private final String hostName;
+  private final String wsProtocol;
 
-  public RootEndpoint(String appTitle, String hostName) {
+  public RootEndpoint(String appTitle, String hostName, String wsProtocol) {
 
     this.appTitle = appTitle;
     this.hostName = hostName;
+    this.wsProtocol = wsProtocol;
   }
 
   @GET
@@ -79,7 +81,8 @@ public class RootEndpoint {
     final String jsEnv =
       jsnO("env", jsnO(
         "pathParams", jsnA(Lists.newArrayList(pathParams).stream().map(JsonBuilder::jsn)),
-        "hostname", jsn(hostName)
+        "hostname", jsn(hostName),
+        "wsProtocol", jsn(wsProtocol)
       )).toString();
 
     return HTML_TEMPLATE

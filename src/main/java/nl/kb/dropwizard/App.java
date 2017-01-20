@@ -33,7 +33,7 @@ public class App extends Application<Config> {
 
 
     register(environment, new SampleEndpoint());
-    register(environment, new RootEndpoint(config.getAppTitle(), config.getHostName()));
+    register(environment, new RootEndpoint(config.getAppTitle(), config.getHostName(), config.getWsProtocol()));
     registerServlet(environment, new SampleWebSocketServlet());
   }
 

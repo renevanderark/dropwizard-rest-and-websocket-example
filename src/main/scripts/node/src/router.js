@@ -8,7 +8,7 @@ import actions from "./actions";
 import SampleApp from "./components/sample-app";
 import ActionTypes from "./action-types";
 
-const webSocket = new WebSocket(`ws://${globals.env.hostname}/socket-sample`);
+const webSocket = new WebSocket(`${globals.env.wsProtocol}://${globals.env.hostname}/socket-sample`);
 
 webSocket.onmessage = ({ data }) => store.dispatch({type: ActionTypes.ON_CHAT_MSG, data: JSON.parse(data)});
 

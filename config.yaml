@@ -18,3 +18,4 @@ logging:
 appTitle: "Dropwizard sample"
 
 hostName: localhost:8182
+wsProtocol: ws
