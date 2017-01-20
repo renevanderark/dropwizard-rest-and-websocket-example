@@ -3,7 +3,8 @@ import ActionTypes from "../action-types";
 const initialState = {
   sampleResponse: null,
   progressSample: null,
-  progressSampleDisabled: false
+  progressSampleDisabled: false,
+  chatMessages: []
 };
 
 export default function(state=initialState, action) {
@@ -27,6 +28,11 @@ export default function(state=initialState, action) {
       return {
         ...state,
         progressSampleDisabled: false
+      };
+    case ActionTypes.ON_CHAT_MSG:
+      return {
+        ...state,
+        chatMessages: state.chatMessages.concat(action.data)
       };
     default:
   }

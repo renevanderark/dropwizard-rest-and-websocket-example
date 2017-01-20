@@ -3,6 +3,23 @@ import { Link } from "react-router";
 
 class SampleApp extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      msg: ""
+    }
+  }
+  onMsgChange(ev) {
+    this.setState({msg: ev.target.value});
+  }
+
+  onMsgKeypress(ev) {
+    if (ev.key === 'Enter') {
+      this.props.onSubmitChatMessage(this.state.msg);
+      this.setState({msg: ""})
+    }
+  }
+
   render() {
     const { sample: { sampleResponse, progressSample, progressSampleDisabled  }, onSampleClick, onPostSampleClick} = this.props;
 
@@ -46,6 +63,20 @@ class SampleApp extends React.Component {
               <pre>
                 {progressSample ? JSON.stringify(progressSample, null, 4) : "Click the button to see the response" }
               </pre>
+            </div>
+          </div>
+
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              Chat via socket
+            </div>
+            <div className="panel-body">
+              <p>This chat uses websockets over /socket-sample</p>
+              <p>
+                <input type="text" className="form-control" placeholder="message" value={this.state.msg}
+                       onChange={this.onMsgChange.bind(this)} onKeyPress={this.onMsgKeypress.bind(this)}/>
+              </p>
+
             </div>
           </div>
         </div>

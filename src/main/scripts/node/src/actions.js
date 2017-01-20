@@ -1,7 +1,7 @@
 import xhr from "xhr"
 import ActionTypes from "./action-types";
 
-export default function actionsMaker(navigateTo, dispatch) {
+export default function actionsMaker(navigateTo, dispatch, webSocket) {
   return {
     onSampleClick: () => {
       xhr.get("/sample", (err, resp, body) => dispatch({
@@ -33,6 +33,8 @@ export default function actionsMaker(navigateTo, dispatch) {
       };
 
       req.send();
-    }
+    },
+
+    onSubmitChatMessage: (msg) => webSocket.send(msg)
   };
 }
