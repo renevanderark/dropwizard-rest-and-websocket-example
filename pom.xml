@@ -49,6 +49,20 @@
       <version>${dropwizard.version}</version>
     </dependency>
 
+    <!--data source-->
+    <dependency>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-db</artifactId>
+      <version>${dropwizard.version}</version>
+    </dependency>
+
+    <!--data source-->
+    <dependency>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-jdbi</artifactId>
+      <version>${dropwizard.version}</version>
+    </dependency>
+
     <!-- jetty websocket server -->
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
@@ -61,6 +75,13 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.3.4</version>
     </dependency>
 
     <!-- Dropwizard test dependencies -->

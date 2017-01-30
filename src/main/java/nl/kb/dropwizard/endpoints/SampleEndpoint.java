@@ -1,10 +1,15 @@
 package nl.kb.dropwizard.endpoints;
 
+import nl.kb.dropwizard.db.ExperimentalDAO;
+import nl.kb.dropwizard.util.JsonBuilder;
 import org.glassfish.jersey.server.ChunkedOutput;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -13,10 +18,18 @@ import java.io.IOException;
 import java.util.Date;
 
 import static nl.kb.dropwizard.util.JsonBuilder.jsn;
+import static nl.kb.dropwizard.util.JsonBuilder.jsnA;
 import static nl.kb.dropwizard.util.JsonBuilder.jsnO;
 
 @Path("/sample")
 public class SampleEndpoint {
+
+  private final ExperimentalDAO dao;
+
+  public SampleEndpoint(ExperimentalDAO dao) {
+
+    this.dao = dao;
+  }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -53,4 +66,15 @@ public class SampleEndpoint {
 
     return output;
   }
+
+  @POST
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+  @Path("/database")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response sampleInsert(@FormParam("name") String name) {
+    Long data = dao.insertSomething(name);
+
+    return Response.ok(jsnO("createdId", jsn(data), "list", jsnA(dao.list().stream().map(JsonBuilder::jsn)))).build();
+  }
+
 }

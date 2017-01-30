@@ -15,6 +15,22 @@ logging:
       logFormat: "- %-5p  %m [%c{60}]%n"
   level: INFO
 
+# Database settings.
+database:
+
+  # the name of your JDBC driver
+  driverClass: org.hsqldb.jdbc.JDBCDriver
+
+  # the username
+  user: sa
+
+  # the password
+  password: sa
+
+  # the JDBC URL
+  url: jdbc:hsqldb:target/database
+  validationQuery: SELECT * FROM INFORMATION_SCHEMA.SYSTEM_TABLES
+
 appTitle: "Dropwizard sample"
 
 hostName: localhost:8182
